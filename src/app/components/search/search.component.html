@@ -1,0 +1,17 @@
+<h1>Resultados para: <small>{{ filter }}</small></h1>
+
+<div class="row" *ngIf="heroes.length == 0">
+  <div class="col-md-12">
+    <div class="alert alert-info animated fadeIn">
+      <strong>No se han encontrado resultados!</strong>
+    </div>
+  </div>
+</div>
+
+<div class="card-columns">
+  <app-heroe-tarjeta
+    [hero]="hero"
+    [index]="i"
+    *ngFor="let hero of heroes; let i = index">
+  </app-heroe-tarjeta>
+</div>

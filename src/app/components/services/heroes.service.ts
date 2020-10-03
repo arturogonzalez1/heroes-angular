@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {filter} from 'rxjs/operators';
 
 @Injectable()
 export class HeroesService {
@@ -57,8 +58,28 @@ export class HeroesService {
   constructor() {
     console.log('servicio listo para usarse');
   }
-  getHeroes(): Heroe[] {
-    return this.heroes;
+  getHeroes( filtro?: string): Heroe[] {
+    if (filtro !== undefined) {
+      const filteredHeroes: Heroe[] = [];
+      filtro = filtro.toLocaleLowerCase();
+      for ( let i = 0 ; i < this.heroes.length ; i++ ) {
+        const heroe = this.heroes[i];
+        const nombre = heroe.nombre.toLowerCase();
+        if ( nombre.indexOf(filtro) >= 0) {
+          heroe.id = i;
+          filteredHeroes.push(heroe);
+        }
+      }
+      return filteredHeroes;
+    } else {
+      for ( let i = 0 ; i < this.heroes.length ; i++ ) {
+        this.heroes[i].id = i;
+      }
+      return this.heroes;
+    }
+  }
+  getHeroe( index: number ): Heroe {
+    return this.heroes[index];
   }
 }
 
@@ -68,4 +89,5 @@ export interface Heroe {
   img: string;
   aparicion: string;
   casa: string;
+  id?: number;
 }

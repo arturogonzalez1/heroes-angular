@@ -1,0 +1,11 @@
+<div class="card animated fadeIn fast">
+  <img [src]="hero.img" class="card-img-top" [alt]="hero.nombre">
+  <div class="card-body">
+    <h5 class="card-title">{{ hero.nombre }}</h5>
+    <p class="card-text">{{ hero.bio }}</p>
+    <p class="card-text"><small class="text-muted">{{ hero.aparicion}}</small></p>
+  </div>
+  <div class="card-footer">
+    <button (click)="showHero()" class="btn btn-outline-primary btn-block">Ver mas...</button>
+  </div>
+</div>
